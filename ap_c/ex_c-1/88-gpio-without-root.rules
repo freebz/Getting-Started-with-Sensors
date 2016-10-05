@@ -1,0 +1,13 @@
+# Example C-1. 88-gpio-without-root.rules
+
+# /etc/udev/rules.d/88-gpio-without-root.rules - GPIO without root on Raspberry Pi
+# Copyright http://BotBook.com
+#
+SUBSYSTEM=="gpio", RUN+="/bin/chown -R root.dialout /sys/class/gpio/"
+SUBSYSTEM=="gpio", RUN+="/bin/chown -R root.dialout /sys/devices/virtual/gpio/"
+#
+SUBSYSTEM=="gpio", RUN+="/bin/chmod g+s /sys/class/gpio"
+SUBSYSTEM=="gpio", RUN+="/bin/chmod g+s /sys/devices/virtual/gpio/"
+#
+SUBSYSTEM=="gpio", RUN+="/bin/chmod -R ug+rw /sys/class/gpio"
+SUBSYSTEM=="gpio", RUN+="/bin/chmod -R ug+rw /sys/devices/virtual/gpio/"
